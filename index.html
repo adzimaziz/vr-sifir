@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VR Sifir</title>
+  <meta name="description" content="Permainan sifir VR gaya Beat Saber untuk Pico 4">
+  <meta name="theme-color" content="#140a2e">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">{ "imports": { "three": "./lib/three.module.min.js" } }</script>
+</head>
+<body>
+  <main id="menu">
+    <header>
+      <h1>VR <span>Sifir</span></h1>
+      <p class="tag">Hayun pedang, pukul jawapan yang betul ikut rentak lagu!</p>
+    </header>
+
+    <section class="card">
+      <h2><b>1</b> Pilih sifir</h2>
+      <div id="tables" class="grid12"></div>
+      <div class="row">
+        <button id="tAll" class="small">Semua</button>
+        <button id="tNone" class="small">Kosongkan</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><b>2</b> Pilih lagu</h2>
+      <div id="songs" class="songlist"></div>
+      <label class="addsong">＋ Tambah lagu dari peranti
+        <input type="file" id="fileIn" accept="audio/*,.mp3,.ogg,.wav,.m4a" hidden>
+      </label>
+      <div id="songStatus" class="status"></div>
+      <div class="row bpmrow">
+        <label>BPM <input id="bpm" type="number" min="40" max="240" step="0.1" inputmode="decimal"></label>
+        <button id="bpmHalf" class="small" title="Separuh">÷2</button>
+        <button id="bpmDouble" class="small" title="Ganda">×2</button>
+        <button id="bpmAuto" class="small">Auto</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><b>3</b> Tahap</h2>
+      <div id="diffs" class="seg"></div>
+    </section>
+
+    <section class="card play">
+      <button id="btnVR" class="big" disabled>🥽 Main dalam VR</button>
+      <button id="btnScreen" class="big alt" disabled>🖥️ Cuba di skrin</button>
+      <p id="vrNote" class="note"></p>
+      <p id="record" class="note"></p>
+    </section>
+
+    <section id="lastResult" class="card hidden"></section>
+
+    <details class="card help">
+      <summary>Cara main &amp; kawalan Pico 4</summary>
+      <ul>
+        <li>Soalan (contoh <b>5 × 4 = ?</b>) datang bersama <b>3 kiub jawapan</b> mengikut rentak lagu.</li>
+        <li><b>Hayun</b> pedang ke kiub jawapan yang betul. Pedang kiri (merah) dan kanan (biru) — dua-dua boleh pukul.</li>
+        <li>Jawapan betul berturut-turut menaikkan <b>kombo</b> &amp; pengganda markah (x2, x4, x8).</li>
+        <li>Salah atau terlepas? Jawapan betul akan ditunjukkan (hijau) supaya boleh ingat.</li>
+      </ul>
+      <table class="keys">
+        <tr><td>Hayun pedang</td><td>Pukul kiub / butang dalam VR</td></tr>
+        <tr><td>Trigger / A / X</td><td>Tekan butang utama panel (MULA, SAMBUNG, MAIN LAGI)</td></tr>
+        <tr><td>B / Y</td><td>Jeda / sambung permainan</td></tr>
+        <tr><td>Butang Pico (lama)</td><td>Tengahkan semula pandangan</td></tr>
+      </table>
+      <p class="note">Mod skrin: gerakkan tetikus untuk hayun pedang, ESC = jeda, Enter = butang utama.</p>
+    </details>
+
+    <footer>
+      <button id="installBtn" class="small hidden">⬇ Pasang untuk main offline</button>
+      <span id="offline" class="note"></span>
+    </footer>
+  </main>
+
+  <div id="game" class="hidden">
+    <div id="hint">ESC = jeda · gerakkan tetikus untuk hayun pedang</div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
